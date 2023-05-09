@@ -3,32 +3,34 @@ package com.example.myapplication_123654.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.More
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
-import com.example.myapplication_123654.Greeting
-import com.app_123654.compose.ui.ui.navigation.AppScreen
+import com.example.myapplication_123654.android.ui.navigation.AppNavigation
+import com.example.myapplication_123654.android.ui.navigation.AppScreen
+import kotlinx.coroutines.launch
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
 
-            val screens = com.app_123654.compose.ui.ui.navigation.AppScreen.getAll()
+            val screens = AppScreen.getAll()
 
             val scaffoldState = rememberScaffoldState()
+            val scope = rememberCoroutineScope()
 
-            val selectedScreen by remember {
+            var selectedScreen by remember {
                 mutableStateOf(screens.first())
             }
 
@@ -37,6 +39,38 @@ class MainActivity : ComponentActivity() {
             MyApplicationTheme {
                 Scaffold(
                     scaffoldState = scaffoldState,
+                    drawerContent = {
+                        screens.forEach{screen ->
+                            TextButton(
+                                onClick = {
+                                    selectedScreen = screen
+                                    navController.navigate(screen.route)
+                                },
+                                modifier = Modifier
+                                    .background(
+                                        if (selectedScreen == screen)
+                                            Color.Black
+                                        else Color.White
+                                    )
+                                    .fillMaxWidth()
+                            ) {
+                                Row{
+                                    Icon(
+                                        imageVector = screen.icon,
+                                        contentDescription = null
+                                    )
+                                    Text(
+                                        text = stringResource(screen.nameResource),
+                                        color =
+                                        if (selectedScreen == screen)
+                                            Color.White
+                                        else Color.Black
+                                    )
+                                }
+                            }
+                        }
+
+                    },
                     topBar = {
                         TopAppBar(
                             title = {
@@ -44,19 +78,24 @@ class MainActivity : ComponentActivity() {
                             },
                             navigationIcon = {
                                 IconButton(onClick = {
-                                    scaffoldState.drawerState.isOpen
+                                    scope.launch {
+                                        scaffoldState.drawerState.open()
+                                    }
                                 }) {
                                     Icon(
                                         imageVector = Icons.Default.Menu,
                                         contentDescription = null
                                     )
                                 }
-                            }
+                            },
+                            backgroundColor = Color.White,
+                            elevation = 0.dp
                         )
+                    },
+                    content = {
+                        AppNavigation(navController = navController)
                     }
-                ) {
-
-                }
+                )
             }
         }
     }

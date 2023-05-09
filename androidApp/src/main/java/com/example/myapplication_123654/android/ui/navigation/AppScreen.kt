@@ -14,7 +14,7 @@ sealed class AppScreen(
     object AuthScreen: AppScreen("authScreen", R.string.screen_auth, Icons.Default.Person)
     object RegistrationScreen: AppScreen("registrationScreen", R.string.screen_registration, Icons.Default.Report)
     object TransactionScreen: AppScreen("transactionScreen", R.string.screen_transaction, Icons.Default.Money)
-    object TransactionEditorScreen: AppScreen("transactionEditorScreen", R.string.screen_transaction_editor, Icons.Default.EditOff)
+    object TransactionEditorScreen: AppScreen("transactionEditorScreen", R.string.screen_transaction_editor, Icons.Default.Edit)
     object QrScreen: AppScreen("qrScreen", R.string.screen_qr, Icons.Default.QrCode)
     object SettingsScreen: AppScreen("settingsScreen", R.string.screen_settings, Icons.Default.Settings)
 
@@ -26,6 +26,7 @@ sealed class AppScreen(
             TransactionEditorScreen,
             QrScreen,
             SettingsScreen
+
         )
     }
 

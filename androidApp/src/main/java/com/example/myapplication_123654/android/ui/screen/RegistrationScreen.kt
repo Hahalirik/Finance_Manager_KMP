@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.graphics.drawable.IconCompat
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -26,13 +27,6 @@ fun RegistrationScreen() {
     var confirmPasswordVisibility by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Регистрация") },
-                backgroundColor = Color.White,
-                elevation = 0.dp
-            )
-        },
         content = {
 
             Column(
@@ -42,6 +36,8 @@ fun RegistrationScreen() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Text(text = "Регистрация", color = Color.Black, fontSize = 25.sp)
+                Spacer(modifier = Modifier.height(4.dp))
                 OutlinedTextField(
                     value = username,
                     onValueChange = { username = it },

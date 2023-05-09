@@ -24,13 +24,6 @@ fun TransactionEditorScreen() {
     var productCount by remember { mutableStateOf(1) }
 
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Редактор транзакции") },
-                backgroundColor = Color.White,
-                elevation = 0.dp
-            )
-        },
         content = {
             Column(
                 modifier = Modifier

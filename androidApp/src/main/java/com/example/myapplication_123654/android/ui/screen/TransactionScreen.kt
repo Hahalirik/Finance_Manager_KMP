@@ -23,14 +23,7 @@ fun TransactionScreen(dataList: List<String> = listOf("")) {
 
 
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Мои транзакции") },
-                backgroundColor = Color.White,
-                elevation = 0.dp
-            )
-        },
-        content = {
+       content = {
             Column(
                 modifier = Modifier
                     .fillMaxSize()

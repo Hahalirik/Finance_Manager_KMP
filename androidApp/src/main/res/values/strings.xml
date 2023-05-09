@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Finance Manager</string>
+    <string name="screen_auth">Auth Screen</string>
+    <string name="screen_registration">Registration Screen</string>
+    <string name="screen_transaction">Transaction Screen</string>
+    <string name="screen_transaction_editor">Transaction Editor Screen</string>
+    <string name="screen_qr">QR Screen</string>
+    <string name="screen_settings">Settings Screen</string>
+</resources>

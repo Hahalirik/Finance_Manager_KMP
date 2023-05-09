@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Finance Manager</string>
+    <string name="screen_auth">Авторизация</string>
+    <string name="screen_registration">Регистрация</string>
+    <string name="screen_transaction">Мои транзакции</string>
+    <string name="screen_transaction_editor">Редактор транзакций</string>
+    <string name="screen_qr">Скан QR-кода</string>
+    <string name="screen_settings">Настройки</string>
+</resources>
